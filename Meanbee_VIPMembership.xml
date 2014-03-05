@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Meanbee_VIPMembership>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Page />
+                <Mage_Customer />
+                <Mage_Sales />
+            </depends>
+        </Meanbee_VIPMembership>
+    </modules>
+</config>
