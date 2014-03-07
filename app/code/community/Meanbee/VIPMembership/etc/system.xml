@@ -8,7 +8,7 @@
     </tabs>
     <sections>
         <vipmembership_config module="meanbee_vipmembership" translate="label">
-            <label>Meanbee: Magento Prime</label>
+            <label>Meanbee: VIP Membership</label>
             <tab>meanbee_vipmembership</tab>
             <frontend_type>text</frontend_type>
             <sort_order>1000</sort_order>

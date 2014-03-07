@@ -59,7 +59,7 @@
             <product>
                 <type>
                     <vip translate="label" module="meanbee_vipmembership">
-                        <label>Prime Product</label>
+                        <label>VIP Membership Product</label>
                         <model>meanbee_vipmembership/product_type</model>
                         <is_qty>0</is_qty>
                         <composite>0</composite>
