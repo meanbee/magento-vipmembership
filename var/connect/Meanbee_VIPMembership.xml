@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+    <name>Meanbee_VIPMembership</name>
+    <version>0.0.1</version>
+    <stability>stable</stability>
+    <license uri="http://www.meanbee.com/">Commercial</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Adds VIP Membership system to Magento</summary>
+    <description>Meanbee_VIPMembership adds a VIP membership system to your Magento store, allowing customers to purchase a membership, and then receive discounts.</description>
+    <notes>Initial release</notes>
+    <authors><author><name>Meanbee</name><user>meanbee</user><email>hello@meanbee.com</email></author></authors>
+    <date>2014-03-10</date>
+    <time>10:09:03</time>
+    <contents><target name="magecommunity"><dir name="Meanbee"><file name="VIPMembership" hash="d41d8cd98f00b204e9800998ecf8427e"/></dir></target><target name="mageetc"><dir name="modules"><file name="Meanbee_VIPMembership.xml" hash="d8306accdcb4630f35ff1ec691370be7"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.13</min><max>6.0.0</max></php></required></dependencies>
+</package>
+

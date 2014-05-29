@@ -1,2 +1,3 @@
-Meanbee_VIPMembership.xml app/etc/modules/Meanbee_VIPMembership.xml
+app/etc/modules/Meanbee_VIPMembership.xml app/etc/modules/Meanbee_VIPMembership.xml
 app/code/community/Meanbee/VIPMembership app/code/community/Meanbee/VIPMembership
+var/connect/Meanbee_VIPMembership.xml var/connect/Meanbee_VIPMembership.xml
