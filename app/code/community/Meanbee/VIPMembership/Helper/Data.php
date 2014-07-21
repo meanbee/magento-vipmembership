@@ -1,14 +1,20 @@
 <?php
 class Meanbee_VIPMembership_Helper_Data extends Mage_Core_Helper_Abstract {
 
+    const MEMBERSHIP_ORDER_STATUS_PATH = 'vipmembership_config/vipmembership_general/order_status';
+    const MEMBERSHIP_CUSTOMER_GROUP_PATH = 'vipmembership_config/vipmembership_general/customer_group';
+    const MEMBERSHIP_ENABLED_PATH = 'vipmembership_config/vipmembership_general/is_enabled';
+    const MEMBERSHIP_LOGGING_PATH = 'vipmembership_config/vipmembership_general/log_enabled';
+
     /**
      * @return mixed
      */
     public function getCustomerGroupId() {
-        return Mage::getStoreConfig('vipmembership_config/vipmembership_general/customer_group');
+        return Mage::getStoreConfig(self::MEMBERSHIP_CUSTOMER_GROUP_PATH);
     }
+
     public function isVIPMembershipEnabled() {
-        return Mage::getStoreConfig('vipmembership_config/vipmembership_general/is_enabled');
+        return Mage::getStoreConfig(self::MEMBERSHIP_ENABLED_PATH);
     }
 
     /**
@@ -67,5 +73,23 @@ class Meanbee_VIPMembership_Helper_Data extends Mage_Core_Helper_Abstract {
 
     public function getProfileExpiryDate($start, $period) {
         return Mage::getModel('core/date')->date(null, strtotime($period, strtotime($start)));
+    }
+
+    /**
+     * Check if the order status matches the defined order status in system config
+     * @param string $status
+     * @return bool
+     */
+    public function isOrderStatusAllowed($status) {
+        return $status == Mage::getStoreConfig(self::MEMBERSHIP_ORDER_STATUS_PATH);
+    }
+
+    /**
+     * Check if the recurring profile is active.
+     * @param $status
+     * @return bool
+     */
+    public function isRecurringProfileStatusAllowed($status) {
+        return $status == Mage_Sales_Model_Recurring_Profile::STATE_ACTIVE;
     }
 }
