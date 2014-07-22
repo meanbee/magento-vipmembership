@@ -1,19 +1,93 @@
-<?xml version="1.0"?>
-<package>
-    <name>Meanbee_VIPMembership</name>
-    <version>0.0.1</version>
-    <stability>stable</stability>
-    <license uri="http://www.meanbee.com/">Commercial</license>
-    <channel>community</channel>
-    <extends/>
-    <summary>Adds VIP Membership system to Magento</summary>
-    <description>Meanbee_VIPMembership adds a VIP membership system to your Magento store, allowing customers to purchase a membership, and then receive discounts.</description>
-    <notes>Initial release</notes>
-    <authors><author><name>Meanbee</name><user>meanbee</user><email>hello@meanbee.com</email></author></authors>
-    <date>2014-03-10</date>
-    <time>10:09:03</time>
-    <contents><target name="magecommunity"><dir name="Meanbee"><file name="VIPMembership" hash="d41d8cd98f00b204e9800998ecf8427e"/></dir></target><target name="mageetc"><dir name="modules"><file name="Meanbee_VIPMembership.xml" hash="d8306accdcb4630f35ff1ec691370be7"/></dir></target></contents>
-    <compatible/>
-    <dependencies><required><php><min>5.2.13</min><max>6.0.0</max></php></required></dependencies>
-</package>
+<_>
+   <form_key>TGg8Se4DAlaKHn0E</form_key>
+   <name>Meanbee_VIPMembership</name>
+   <channel>community</channel>
+   <version_ids>
+      <version_ids>2</version_ids>
+   </version_ids>
+   <summary>Adds VIP Membership system to Magento</summary>
+   <description>Meanbee_VIPMembership adds a VIP membership system to your Magento store, allowing customers to purchase a membership, and then receive discounts.</description>
+   <license>Commercial</license>
+   <license_uri/>
+   <version>0.0.2</version>
+   <stability>stable</stability>
+   <notes>0.0.1:
+- Initial release
 
+0.0.2:
+- Added ability to define at which order status the customer becomes a VIP</notes>
+   <authors>
+      <name>
+         <name>Meanbee</name>
+      </name>
+      <user>
+         <user>meanbee</user>
+      </user>
+      <email>
+         <email>hello@meanbee.com</email>
+      </email>
+   </authors>
+   <depends_php_min>5.2.13</depends_php_min>
+   <depends_php_max>6.0.0</depends_php_max>
+   <depends>
+      <package>
+         <name>
+            <name/>
+         </name>
+         <channel>
+            <channel/>
+         </channel>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+         <files>
+            <files> </files>
+         </files>
+      </package>
+      <extension>
+         <name>
+            <name>Core</name>
+         </name>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+      </extension>
+   </depends>
+   <contents>
+      <target>
+         <target>magelocal</target>
+         <target>magecommunity</target>
+         <target>mageetc</target>
+      </target>
+      <path>
+         <path/>
+         <path>Meanbee</path>
+         <path>modules/Meanbee_VIPMembership.xml</path>
+      </path>
+      <type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+      </type>
+      <include>
+         <include/>
+         <include/>
+         <include/>
+      </include>
+      <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+      </ignore>
+   </contents>
+   <page>1</page>
+   <limit>200</limit>
+   <folder/>
+   <package/>
+</_>

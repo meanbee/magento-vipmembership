@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Meanbee_VIPMembership>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </Meanbee_VIPMembership>
     </modules>
     <frontend>
@@ -23,9 +23,29 @@
                     </meanbee_vipmembership>
                 </observers>
             </checkout_onepage_controller_success_action>
+            <sales_order_status_history_save_after>
+                <observers>
+                    <meanbee_vipmembership>
+                        <type>singleton</type>
+                        <class>Meanbee_VIPMembership_Model_Observer</class>
+                        <method>salesOrderStatusHistorySaveAfter</method>
+                    </meanbee_vipmembership>
+                </observers>
+            </sales_order_status_history_save_after>
         </events>
     </frontend>
     <global>
+        <events>
+            <sales_order_status_history_save_after>
+                <observers>
+                    <meanbee_vipmembership>
+                        <type>singleton</type>
+                        <class>Meanbee_VIPMembership_Model_Observer</class>
+                        <method>salesOrderStatusHistorySaveAfter</method>
+                    </meanbee_vipmembership>
+                </observers>
+            </sales_order_status_history_save_after>
+        </events>
         <blocks>
             <meanbee_vipmembership>
                 <class>Meanbee_VIPMembership_Block</class>
@@ -81,4 +101,12 @@
             </meanbee_vipmembership>
         </jobs>
     </crontab>
+    <default>
+        <vipmembership_config>
+            <vipmembership_general>
+                <order_status>complete</order_status>
+                <recurring_profile_status>active</recurring_profile_status>
+            </vipmembership_general>
+        </vipmembership_config>
+    </default>
 </config>
