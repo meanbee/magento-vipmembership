@@ -10,13 +10,10 @@ class Meanbee_VIPMembership_Model_Product_Type extends Mage_Catalog_Model_Produc
             /** @var Meanbee_VIPMembership_Helper_Data $_helper */
             $_helper = Mage::helper('meanbee_vipmembership');
             $customer = Mage::getSingleton('customer/session')->getCustomer();
+
             // Check if the customer isn't logged in.
             if (!$customer->getId()) {
                 return $_helper->__('You must be logged in to buy become a VIP member');
-            }
-            // Check if the customer is already a VIP customer, and throw an error if so.
-            if ($_helper->isCustomerVIP($customer->getId())) {
-                return $_helper->__('You are already an active VIP customer!');
             }
         }
         return parent::_prepareProduct($buyRequest, $product, $processMode);

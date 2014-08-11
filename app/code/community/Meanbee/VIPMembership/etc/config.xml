@@ -2,17 +2,10 @@
 <config>
     <modules>
         <Meanbee_VIPMembership>
-            <version>0.0.2</version>
+            <version>0.0.3</version>
         </Meanbee_VIPMembership>
     </modules>
     <frontend>
-        <!--<layout>-->
-            <!--<updates>-->
-                <!--<meanbee_vipmembership>-->
-                    <!--<file>meanbee/vipmembership.xml</file>-->
-                <!--</meanbee_vipmembership>-->
-            <!--</updates>-->
-        <!--</layout>-->
         <events>
             <checkout_onepage_controller_success_action>
                 <observers>

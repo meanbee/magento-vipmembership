@@ -113,7 +113,7 @@ class Meanbee_VIPMembership_Model_Observer {
         if ($customer == null) {
             $customer = Mage::getSingleton('customer/session')->getCustomer();
         }
-        if ($customer->getId() && !$_helper->isCustomerVIP($customer->getId())) {
+        if ($customer->getId()) {
             $customer->setGroupId($_helper->getCustomerGroupId());
             $customer->setVipExpiry($expiryDate);
             $customer->save();
