@@ -64,16 +64,42 @@ class Meanbee_VIPMembership_Model_Observer {
      * @param mixed $customer
      */
     protected function _vipProductPurchased($orderIds, $customer = null) {
+        /** @var Meanbee_VIPMembership_Helper_Data $_helper */
+        $_helper = Mage::helper('meanbee_vipmembership');
+
+        if ($customer == null) {
+            $customer = Mage::getSingleton('customer/session')->getCustomer();
+        }
+
         $orders = Mage::getModel('sales/order')->getCollection()->addFieldToFilter('entity_id', array('in' => $orderIds));
         foreach ($orders as $order) {
+            if (!$this->_customerOrderCanBecomeVip($order)) {
+                continue;
+            }
+
+            // If customer has already been upgraded due to this order
+            if ($order->getId() == $customer->getVipOrderId()) {
+                continue;
+            }
+
             $items = array_filter($order->getAllItems(), function($v) { return $v->getProductType() == Meanbee_VIPMembership_Model_Product_Type::TYPE_VIP; });
             if (count($items)) {
                 /** @var Mage_Sales_Model_Order_Item $item */
                 $item = array_pop($items);
                 $product = $item->getProduct();
-                $expiryDate = strtotime('+' . $product->getVipLength() . ' ' . $product->getAttributeText('vip_length_unit'));
+
+                // Get start date for calculating membership expiry.  Extend from current expiry if member exists
+                $startDate = time();
+                if ($customer->getId() && $_helper->isCustomerVIP($customer->getId())) {
+                    $startDate = strtotime($customer->getVipExpiry());
+                }
+
+                // Calculate membership end date from start date and membership length
+                $length = sprintf("+ %s %s", $product->getVipLength(), $product->getAttributeText('vip_length_unit'));
+                $expiryDate = strtotime($length, $startDate);
+
                 if ($this->_customerOrderCanBecomeVip($order)) {
-                    $this->_upgradeCustomerToVIP($expiryDate, $customer);
+                    $this->_upgradeCustomerToVIP($expiryDate, $order->getId(), $customer);
                 }
             }
         }
@@ -89,13 +115,28 @@ class Meanbee_VIPMembership_Model_Observer {
             return;
         }
 
+        /** @var Meanbee_VIPMembership_Helper_Data $_helper */
+        $_helper = Mage::helper('meanbee_vipmembership');
+
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+
         $profiles = Mage::getModel('sales/recurring_profile')->getCollection()->addFieldToFilter('profile_id', array('in' => $profileIds))->load();
         foreach ($profiles as $profile) {
             $orderItemInfo = unserialize($profile->getOrderItemInfo());
             if ($orderItemInfo['product_type'] == Meanbee_VIPMembership_Model_Product_Type::TYPE_VIP) {
-                $expiryDate = strtotime('+' . $profile->getPeriodFrequency() . ' ' . $profile->getPeriodUnit());
+
+                // Get start date for calculating membership expiry.  Extend from current expiry if member exists
+                $startDate = time();
+                if ($customer->getId() && $_helper->isCustomerVIP($customer->getId())) {
+                    $startDate = strtotime($customer->getVipExpiry());
+                }
+
+                // Calculate membership end date from start date and membership length
+                $length = sprintf("+ %s %s", $profile->getPeriodFrequency(), $profile->getPeriodUnit());
+                $expiryDate = strtotime($length, $startDate);
+
                 if ($this->_customerRecurringProfileCanBecomeVip($profile)) {
-                    $this->_upgradeCustomerToVIP($expiryDate);
+                    $this->_upgradeCustomerToVIP($expiryDate, $profile->getId(), $customer);
                 }
             }
         }
@@ -104,18 +145,18 @@ class Meanbee_VIPMembership_Model_Observer {
     /**
      * Upgrades customer to VIP
      * @param string $expiryDate
+     * @param int $orderId
      * @param mixed  $customer
      * @throws Exception
      */
-    protected function _upgradeCustomerToVIP($expiryDate, $customer = null) {
+    protected function _upgradeCustomerToVIP($expiryDate, $orderId, $customer) {
         /** @var Meanbee_VIPMembership_Helper_Data $_helper */
         $_helper = Mage::helper('meanbee_vipmembership');
-        if ($customer == null) {
-            $customer = Mage::getSingleton('customer/session')->getCustomer();
-        }
+
         if ($customer->getId()) {
             $customer->setGroupId($_helper->getCustomerGroupId());
             $customer->setVipExpiry($expiryDate);
+            $customer->setVipOrderId($orderId);
             $customer->save();
         }
     }
