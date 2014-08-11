@@ -1,5 +1,5 @@
 <_>
-   <form_key>TGg8Se4DAlaKHn0E</form_key>
+   <form_key>pm7inN6DOZogFhuf</form_key>
    <name>Meanbee_VIPMembership</name>
    <channel>community</channel>
    <version_ids>
@@ -9,13 +9,16 @@
    <description>Meanbee_VIPMembership adds a VIP membership system to your Magento store, allowing customers to purchase a membership, and then receive discounts.</description>
    <license>Commercial</license>
    <license_uri/>
-   <version>0.0.2</version>
+   <version>0.0.3</version>
    <stability>stable</stability>
    <notes>0.0.1:
 - Initial release
 
 0.0.2:
-- Added ability to define at which order status the customer becomes a VIP</notes>
+- Added ability to define at which order status the customer becomes a VIP.
+
+0.0.3:
+- Added ability for customers to extend their membership by purchasing a new VIP membership product up to and beyond their previous membership expiry date.</notes>
    <authors>
       <name>
          <name>Meanbee</name>
@@ -44,7 +47,7 @@
             <max/>
          </max>
          <files>
-            <files> </files>
+            <files>   </files>
          </files>
       </package>
       <extension>
@@ -86,8 +89,4 @@
          <ignore/>
       </ignore>
    </contents>
-   <page>1</page>
-   <limit>200</limit>
-   <folder/>
-   <package/>
 </_>
