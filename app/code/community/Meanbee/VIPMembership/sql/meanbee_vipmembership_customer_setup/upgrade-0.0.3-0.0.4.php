@@ -10,7 +10,7 @@ INSERT INTO `customer_form_attribute`
     SELECT 'adminhtml_customer',
            `attribute_id`
     FROM `eav_attribute`
-    WHERE `entity_type_id` = 1
+    WHERE `entity_type_id` = {$installer->getEntityTypeId('customer')}
       AND `attribute_code` IN ('vip_expiry', 'vip_order_id');
 
 EOQ;
