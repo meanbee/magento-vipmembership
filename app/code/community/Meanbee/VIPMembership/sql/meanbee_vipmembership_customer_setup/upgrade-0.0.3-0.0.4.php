@@ -4,17 +4,26 @@ $installer = $this;
 
 $installer->startSetup();
 
-$sql = <<<EOQ
+$eavConfig = Mage::getSingleton('eav/config');
 
-INSERT INTO `customer_form_attribute`
-    SELECT 'adminhtml_customer',
-           `attribute_id`
-    FROM `eav_attribute`
-    WHERE `entity_type_id` = {$installer->getEntityTypeId('customer')}
-      AND `attribute_code` IN ('vip_expiry', 'vip_order_id');
+$store = Mage::app()->getStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-EOQ;
+$vipExpiry = $eavConfig->getAttribute('customer', 'vip_expiry');
 
-$installer->run($sql);
+if ($vipExpiry->getId()) {
+    $vipExpiry
+        ->setWebsite( ($store->getWebsite() ?: 0))
+        ->setData('used_in_forms', array('adminhtml_customer'))
+        ->save();
+}
+
+$vipOrderId = $eavConfig->getAttribute('customer', 'vip_order_id');
+
+if ($vipOrderId->getId()) {
+    $vipOrderId
+        ->setWebsite( ($store->getWebsite() ?: 0))
+        ->setData('used_in_forms', array('adminhtml_customer'))
+        ->save();
+}
 
 $installer->endSetup();
