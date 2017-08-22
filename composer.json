@@ -1,0 +1,16 @@
+{
+    "name": "meanbee/magento-vipmembership",
+    "description": "Magento 1 extension that provides a VIP product for people to purchase and that changes their customer group.",
+    "homepage": "https://www.meanbee.com/magento-extensions/vip-membership.html",
+    "type": "magento-module",
+    "version": "0.0.2",
+    "authors": [
+        {
+            "name": "Meanbee",
+            "email": "hello@meanbee.com"
+        }
+    ],
+	"require":{
+			"magento-hackathon/magento-composer-installer":"^3.0.0"
+		}
+}
